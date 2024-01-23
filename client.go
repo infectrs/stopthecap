@@ -1,11 +1,10 @@
 package stopthecap
 
-import "errors"
 
 func NewClient(apiKey string) (*CapsolverClient, error) {
 
 	if apiKey == "" {
-		return nil, errors.New("stopthecap: api key is missing")
+		return nil, apiKeyError
 	}
 
 	client := CapsolverClient{

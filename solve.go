@@ -1,7 +1,6 @@
 package stopthecap
 
 import (
-	"errors"
 	"strings"
 	"time"
 )
@@ -18,23 +17,23 @@ func (client CapsolverClient) Solve(captchaTask map[string]any, retry int, timeo
 	taskType, exists := captchaTask["type"].(string)
 
 	if !exists {
-		return nil, errors.New("stopthecap: captcha type is missing")
+		return nil, missingCaptchaTypeError
 	}
 
 	normalizedTaskType := strings.ToLower(taskType)
 
 	if !contains(supportedModes, normalizedTaskType) {
-		return nil, errors.New("stopthecap: captcha type is not supported")
+		return nil, notSupportedCaptchaTypeError
 	}
 
 	task, err := client.createTask(captchaTask)
 
 	if err != nil {
-		return nil, errors.New("stopthecap: couldn't create task")
+		return nil, createTaskError
 	}
 
 	if task.ErrorID == 1 {
-		return nil, errors.New("stopthecap: " + task.ErrorDescription)
+		return nil, errorIdError
 	}
 
 	var taskResult *CapsolverResponse
@@ -44,13 +43,13 @@ func (client CapsolverClient) Solve(captchaTask map[string]any, retry int, timeo
 		taskResult, taskResultErr = client.getTaskResult(task.TaskId)
 
 		if taskResultErr != nil {
-			return nil, errors.New("stopthecap: couldn't get task result")
+			return nil, taskResultError
 		}
 
 		time.Sleep(timeout)
 
 		if taskResult.ErrorID == 1 {
-			return nil, errors.New("stopthecap: " + task.ErrorDescription)
+			return nil, errorIdError
 		}
 
 		if taskResult.Status == readyStatus {
