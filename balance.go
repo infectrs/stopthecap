@@ -4,6 +4,7 @@ const (
 	getBalanceEndpoint = "/getBalance"
 )
 
+// GetBalance retrieves the balance of a CapSolver account
 func (client CapsolverClient) GetBalance() (*CapsolverResponse, error) {
 
 	reqBody := CapsolverRequest{

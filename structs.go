@@ -1,15 +1,18 @@
 package stopthecap
 
+// CapsolverClient holds the CapSolver client information
 type CapsolverClient struct {
 	ClientKey string
 }
 
+// CapsolverRequest holds the CapSolver request body data
 type CapsolverRequest struct {
 	ClientKey string         `json:"clientKey"`
 	Task      map[string]any `json:"task,omitempty"`
 	TaskId    string         `json:"taskId,omitempty"`
 }
 
+// CapsolverSolution holds the CapSolver solution data
 type CapsolverSolution struct {
 	UserAgent        string `json:"userAgent,omitempty"`
 	ExpireTime       string `json:"expireTime,omitempty"`
@@ -26,6 +29,7 @@ type CapsolverSolution struct {
 	RiskType         string `json:"risk_type,omitempty"`
 }
 
+// CapsolverResponse holds the CapSolver response body data
 type CapsolverResponse struct {
 	ErrorID          int64              `json:"errorId"`
 	ErrorCode        string             `json:"errorCode,omitempty"`

@@ -5,6 +5,7 @@ const (
 	getTaskResultEndpoint = "/getTaskResult"
 )
 
+// createTask creates a CapSolver captcha task
 func (client CapsolverClient) createTask(captchaTask map[string]any) (*CapsolverResponse, error) {
 
 	reqBody := CapsolverRequest{
@@ -21,6 +22,7 @@ func (client CapsolverClient) createTask(captchaTask map[string]any) (*Capsolver
 	return resp, nil
 }
 
+// getTaskResult retrieves the result of a CapSolver captcha task
 func (client CapsolverClient) getTaskResult(taskId string) (*CapsolverResponse, error) {
 
 	reqBody := CapsolverRequest{

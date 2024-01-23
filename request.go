@@ -12,6 +12,7 @@ const (
 	baseUrl = "https://api.capsolver.com"
 )
 
+// newReq performs a http request to the CapSolver API
 func newReq(apiEndpoint string, reqBody CapsolverRequest) (*CapsolverResponse, error) {
 	url := fmt.Sprintf("%s%s", baseUrl, apiEndpoint)
 
