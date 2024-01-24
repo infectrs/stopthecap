@@ -9,6 +9,7 @@ const (
 	readyStatus = "ready"
 )
 
+// Supported Captcha Modes
 var (
 	supportedModes = []string{"HCaptchaTask", "HCaptchaTaskProxyLess", "FunCaptchaTaskProxyLess", "GeeTestTask", "GeeTestTaskProxyLess", "ReCaptchaV2Task", "ReCaptchaV2EnterpriseTask", "ReCaptchaV2TaskProxyLess", "ReCaptchaV2EnterpriseTaskProxyLess", "ReCaptchaV3Task", "ReCaptchaV3EnterpriseTask", "ReCaptchaV3TaskProxyLess", "ReCaptchaV3EnterpriseTaskProxyLess", "ReCaptchaV3M1TaskProxyLess", "MTCaptcha"}
 )
