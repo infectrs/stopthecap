@@ -18,7 +18,7 @@ type CapsolverSolution struct {
 	ExpireTime       string `json:"expireTime,omitempty"`
 	Timestamp        string `json:"timestamp,omitempty"`
 	CaptchaKey       string `json:"captchaKey,omitempty"`
-	CaptchaSolution  string `json:"gRecaptchaRespons,omitempty"`
+	CaptchaSolution  string `json:"gRecaptchaResponse,omitempty"`
 	CaptchaId        string `json:"captcha_id,omitempty"`
 	CaptchaOutput    string `json:"captcha_output,omitempty"`
 	CaptchaChallenge string `json:"challenge,omitempty"`
