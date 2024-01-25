@@ -15,7 +15,7 @@ var (
 )
 
 // Solve solves a captcha using CapSolver
-func (client CapsolverClient) Solve(captchaTask map[string]any, retry int, timeout time.Duration) (*CapsolverResponse, error) {
+func (client CapsolverClient) Solve(captchaTask map[string]any, retry int, delay time.Duration) (*CapsolverResponse, error) {
 	taskType, exists := captchaTask["type"].(string)
 
 	if !exists {
@@ -42,13 +42,14 @@ func (client CapsolverClient) Solve(captchaTask map[string]any, retry int, timeo
 	var taskResultErr error
 
 	for i := 0; i < retry; i++ {
+		
+		time.Sleep(delay)
+		
 		taskResult, taskResultErr = client.getTaskResult(task.TaskId)
 
 		if taskResultErr != nil {
 			return nil, taskResultError
 		}
-
-		time.Sleep(timeout)
 
 		if taskResult.ErrorID == 1 {
 			return nil, errorIdError
